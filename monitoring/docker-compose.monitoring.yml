@@ -1,0 +1,47 @@
+version: "3.8"
+
+# Monitoring stack: Graphite (metrics storage) + Grafana (dashboards)
+# Run alongside the intranet-portal container/K8s cluster.
+# Usage: docker-compose -f monitoring/docker-compose.monitoring.yml up -d
+
+services:
+  graphite:
+    image: graphiteapp/graphite-statsd:latest
+    container_name: graphite
+    restart: unless-stopped
+    ports:
+      - "80:80"        # Graphite web UI
+      - "2003-2004:2003-2004"  # Carbon plaintext + pickle receivers
+      - "2023-2024:2023-2024"  # Carbon cache query ports
+      - "8125:8125/udp" # StatsD
+      - "8126:8126"     # StatsD admin
+    volumes:
+      - graphite_storage:/opt/graphite/storage
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_storage:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - graphite
+
+  # Lightweight agent that scrapes node + nginx_status metrics and
+  # forwards them to Graphite via the StatsD line protocol.
+  metrics-agent:
+    image: prom/node-exporter:latest
+    container_name: metrics-agent
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+
+volumes:
+  graphite_storage:
+  grafana_storage:

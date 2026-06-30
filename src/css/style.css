@@ -1,0 +1,52 @@
+:root{
+  --primary:#0b3d91;
+  --accent:#ff8200;
+  --bg:#f4f6f9;
+  --card:#ffffff;
+  --text:#1f2937;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);}
+
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--primary);color:#fff;padding:14px 30px;
+  position:sticky;top:0;z-index:10;
+}
+.logo{font-size:22px;font-weight:700;}
+.logo span{color:var(--accent);}
+.navbar nav ul{display:flex;list-style:none;gap:22px;}
+.navbar nav a{color:#fff;text-decoration:none;font-weight:500;padding:6px 4px;border-bottom:2px solid transparent;}
+.navbar nav a:hover,.navbar nav a.active{border-bottom:2px solid var(--accent);}
+.status{font-size:13px;background:rgba(255,255,255,0.15);padding:5px 12px;border-radius:14px;}
+
+.hero{
+  background:linear-gradient(135deg,var(--primary),#1d5fd0);
+  color:#fff;padding:60px 30px;text-align:center;
+}
+.hero h1{font-size:32px;margin-bottom:10px;}
+.hero p{font-size:16px;opacity:0.9;}
+.build-info{margin-top:20px;font-size:12px;opacity:0.8;}
+
+.content{padding:40px 30px;max-width:1100px;margin:0 auto;}
+.content.alt{background:#eef1f6;}
+.content h2{margin-bottom:20px;color:var(--primary);border-left:5px solid var(--accent);padding-left:10px;}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.card{background:var(--card);border-radius:8px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.card h3{color:var(--primary);margin-bottom:8px;font-size:16px;}
+.card p{font-size:14px;color:#555;}
+.card .date{font-size:12px;color:var(--accent);margin-top:10px;display:block;}
+
+.policy-list{list-style:none;}
+.policy-list li{background:var(--card);margin-bottom:10px;padding:14px 18px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.policy-list li strong{color:var(--primary);}
+
+.holiday-table{width:100%;border-collapse:collapse;background:var(--card);}
+.holiday-table th,.holiday-table td{padding:10px 14px;border-bottom:1px solid #e2e5ea;text-align:left;font-size:14px;}
+.holiday-table th{background:var(--primary);color:#fff;}
+
+#announcement-list .announce{background:#fff3e0;border-left:4px solid var(--accent);padding:14px 18px;margin-bottom:12px;border-radius:4px;}
+
+footer{text-align:center;padding:20px;background:var(--primary);color:#fff;font-size:13px;}
+footer .small{opacity:0.7;font-size:11px;margin-top:4px;}

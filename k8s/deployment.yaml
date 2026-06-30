@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intranet-portal-deployment
+  labels:
+    app: intranet-portal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: intranet-portal
+  template:
+    metadata:
+      labels:
+        app: intranet-portal
+    spec:
+      containers:
+        - name: intranet-portal
+          image: novacorp/intranet-portal:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
