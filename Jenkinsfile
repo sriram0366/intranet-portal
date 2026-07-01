@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Cloning source code from GitHub repository...'
-                git branch: 'main', url: 'https://github.com/<your-username>/intranet-portal-devops.git'
+                git branch: 'main', url: 'https://github.com/sriram0366/intranet-portal.git'
             }
         }
 
