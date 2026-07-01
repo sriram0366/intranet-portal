@@ -5,7 +5,7 @@ pipeline {
         // IMPORTANT: fix PATH so Jenkins can find docker + kubectl
         PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/Applications/Docker.app/Contents/Resources/bin"
 
-        IMAGE_NAME   = "novacorp/intranet-portal"
+        IMAGE_NAME   = "sriram0366/intranet-portal"
         IMAGE_TAG    = "${BUILD_NUMBER}"
         DOCKERHUB_CRED = "dockerhub-credentials"
         KUBE_NAMESPACE = "default"
