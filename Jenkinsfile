@@ -10,12 +10,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                echo 'Cloning source code from GitHub repository...'
-                git branch: 'main', url: 'https://github.com/sriram0366/intranet-portal.git'
-            }
-        }
+        
 
         stage('Lint / Validate') {
             steps {
